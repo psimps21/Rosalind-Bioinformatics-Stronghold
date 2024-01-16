@@ -1,3 +1,15 @@
+"""
+
+"""
+import sys
+
+def ReadInput(input_f):
+    with open(input_f, 'r') as f:
+        data = f.readlines()
+    
+
+    return data[0].strip()
+
 def rna_to_protein(s):
     codons = {
         "UUU": "F",
@@ -76,5 +88,7 @@ def rna_to_protein(s):
 
 
 if __name__ == '__main__':
-    s = 'CUAAUGCCGCAAUCUCACGCACUCAUGUGUUAGAGAAUCCUCAUCC'
+    input_f = sys.argv[1]
+    s = ReadInput(input_f)
+    
     print(rna_to_protein(s))
