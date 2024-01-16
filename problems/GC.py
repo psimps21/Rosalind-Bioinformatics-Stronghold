@@ -40,7 +40,6 @@ def BestGCContent(sequence_map):
 
 
 if __name__ == '__main__':
-    # filename = input('Enter a file path: ')
     input_f = sys.argv[1]
     seq_map = ReadInput(input_f)
 
