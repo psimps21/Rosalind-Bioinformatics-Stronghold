@@ -44,7 +44,6 @@ def orf_seqs(dna):
     rna = insertU(dna)
     rev_rna = insertU(rev_comp(dna))
 
-
     prot_seqs = []
 
     # regex pattern
@@ -102,7 +101,6 @@ def orf_seqs(dna):
 #                     prot_seqs.append(prot)
 
 #     return set(prot_seqs)
-
 
 if __name__ == "__main__":
     input_f = sys.argv[1]
