@@ -12,6 +12,15 @@ represent the number of couples having the following genotypes: :
 Return: The expected number of offspring displaying the dominant phenotype in the next generation, under the
 assumption that every couple has exactly two offspring.
 """
+import sys
+
+def ReadInput(input_f):
+    with open(input_f, 'r') as f:
+        data = f.readlines()
+    
+    data = [int(x) for x in data[0].strip().split()]
+
+    return data
 
 def offspring(nums):
     # The total number of offspring
@@ -27,5 +36,7 @@ def offspring(nums):
     return total_offspring - rec_off
 
 if __name__ == '__main__':
-    num_list = [int(i) for i in input("Enter a list of numbers separated by spaces: ").split(' ')]
-    print(offspring(num_list))
+    input_f = sys.argv[1]
+    data = ReadInput(input_f)
+
+    print(offspring(data))
