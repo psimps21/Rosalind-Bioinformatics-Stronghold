@@ -4,7 +4,7 @@ Given: A DNA string s of length at most 1 kbp in FASTA format.
 Return: Every distinct candidate protein string that can be translated from ORFs of s. Strings can be returned in any
 order.
 """
-import sys
+import sys, re
 
 def ReadInput(input_f):
     with open(input_f, 'r') as fasta:
@@ -43,43 +43,21 @@ def orf_seqs(dna):
     # Get the forward and backwards rna strands
     rna = insertU(dna)
     rev_rna = insertU(rev_comp(dna))
-    frwd_res = rna_to_protein(rna[orf:])
-    rev_res = rna_to_protein(rev_rna[orf:])
+
 
     prot_seqs = []
 
-    # Loop through open reading frames
-    for orf in range(3):
-        frwd_res = rna_to_protein(rna[orf:])
-        rev_res = rna_to_protein(rev_rna[orf:])
+    # regex pattern
+    pattern = r'(?=(M[A-Z]*\*))'
+    
+    for i in range(3):
+        fwd_aa = rna_to_protein(rna[i:])
+        rev_aa = rna_to_protein(rev_rna[i:])
 
-        # For forward and reverse seqs
-        for res in [frwd_res, rev_res]:
-            running_seq = False
-            r_seqs = []
+        fwd_res = re.findall(pattern, fwd_aa)
+        rev_res = re.findall(pattern, rev_aa)
 
-            # Enumerate amino acid residue
-            for inx, aa in enumerate(res):
-                if running_seq:
-                    if aa == "*":
-                        running_seq = False
-                        for pair in r_seqs:
-                            if pair[1] is None:
-                                pair[1] = inx
-
-                    elif aa == 'M':
-                        r_seqs.append([inx, None])
-
-                else:
-                    if aa == 'M':
-                        running_seq = True
-                        r_seqs.append([inx, None])
-
-            # Add complete residues to final list
-            for start, end in r_seqs:
-                if end is not None:
-                    prot = res[start:end]
-                    prot_seqs.append(prot)
+        prot_seqs += [x[:-1] for x in fwd_res] + [x[:-1] for x in rev_res]
 
     return set(prot_seqs)
 
@@ -124,6 +102,7 @@ def orf_seqs(dna):
 #                     prot_seqs.append(prot)
 
 #     return set(prot_seqs)
+
 
 if __name__ == "__main__":
     input_f = sys.argv[1]
