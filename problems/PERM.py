@@ -36,7 +36,7 @@ def find_perms(n):
 if __name__ == '__main__':
     # input_f = sys.argv[1]
     # num = ReadInput(input_f)
-    num = 3
+    num = 4
 
     perms_list = find_perms(num)
 
