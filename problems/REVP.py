@@ -17,8 +17,6 @@ def rev_comp(s):
     return s[::-1].translate(str.maketrans('ACGT', 'TGCA'))
 
 def rev_pal(seq):
-    rc_seq = rev_comp(seq)[::-1]
-
     pals = {}
     for i in range(4,13):
         for j in range(0,len(seq)-i+1):
