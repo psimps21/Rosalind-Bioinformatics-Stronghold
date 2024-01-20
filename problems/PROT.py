@@ -86,6 +86,22 @@ def rna_to_protein(s):
 
     return aa_str
 
+def rna_to_protein1(rna):
+    # Code for codon table found at http://www.petercollingridge.co.uk/tutorials/bioinformatics/codon-table/
+    bases = "UCAG"
+    codons = [a + b + c for a in bases for b in bases for c in bases]
+    amino_acids = 'FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG'
+    codon_table = dict(zip(codons, amino_acids))
+
+    aa_seq = ''
+    for i in range(0, len(s), 3):
+        codon = s[i:i+3]
+        if codon_table[codon] == '*':
+            break
+        aa_seq += codon_table[codon]
+
+    return aa_seq
+
 
 if __name__ == '__main__':
     input_f = sys.argv[1]
