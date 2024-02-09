@@ -29,7 +29,6 @@ def rev_pal(seq):
 if __name__ == '__main__':
     input_f = sys.argv[1]
     dna = ReadInput(input_f)
-    # print(dna)
 
     rev_pal(dna)
 
