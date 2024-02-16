@@ -94,7 +94,7 @@ def rna_to_protein1(rna):
     codon_table = dict(zip(codons, amino_acids))
 
     aa_seq = ''
-    for i in range(0, len(s), 3):
+    for i in range(0, len(rna), 3):
         codon = s[i:i+3]
         if codon_table[codon] == '*':
             break
