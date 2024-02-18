@@ -31,14 +31,6 @@ def enumerateKmers(bases, k):
         imer_list = addToKmers(imer_list, bases)
     
     return imer_list
-    
-
-# def kmers(bases, k):
-#     imer_list = ['A','C','G','T']
-
-
-#     for i in range(1, k+1):
-#         for imer in imer_list:
 
 
 # def k_kmers(filename):
