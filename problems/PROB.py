@@ -4,10 +4,17 @@ Given: A DNA string s of length at most 100 bp and an array A containing at most
 Return: An array B having the same length as A in which B[k] represents the common logarithm of the probability that a
 random string constructed with the GC-content found in A[k] will match s exactly.
 """
-
 from math import log10
+import sys
 
-def ran_strs(seq, prob_list):
+def ReadInput(input_f):
+    with open(input_f, 'r') as f:
+        data = [x.strip() for x in f.readlines()]
+    
+    probs = [float(x) for x in data[1].split(' ')]
+    return data[0], probs
+
+def randomStrings(seq, prob_list):
     new_probs = []
     for prob in prob_list:
         base_prob = {
@@ -27,7 +34,6 @@ def ran_strs(seq, prob_list):
 
 
 if __name__ == '__main__':
-    seq = input('Enter a DNA sequence: ')
-    probs = input('Enter a series of probabilities separated by spaces: ').split(' ')
-    probs = [float(i) for i in probs]
-    print(*ran_strs(seq, probs))
+    input_f = sys.argv[1]
+    seq, probs = ReadInput(input_f)
+    print(*randomStrings(seq, probs))
