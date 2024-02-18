@@ -11,26 +11,27 @@ def ReadInput(input_f):
     with open(input_f, 'r') as f:
         data = [x.strip() for x in f.readlines()]
     
-    return data[0].split(), int(data[1])
+    return data[0].split(' '), int(data[1])
 
-# def enumerateKmers(lst):
-#     if len(lst) == 1:
-#         return [lst]
+def addToKmers(imer_list, bases):
+    new_imer_list = [''] * len(imer_list) * len(bases)
+    # For each existing imer use it as a prefix for the new (i+1)mers
+    for inx1, imer in enumerate(imer_list):
+        # For each base create a new (i+1)mer
+        for inx2, base in enumerate(bases):
+            new_imer = imer + base
+            new_imer_inx = (len(bases)*inx1) + inx2
+            new_imer_list[new_imer_inx] = new_imer
     
-#     kmer_list = []
-#     for i in len(lst):
-#         new_first = lst[i]
+    return new_imer_list
 
-#         leftovers = lst[:i] + lst[i:]
-#         for p in enumerateKmers(leftovers):
-#             kmer_list = kmer_list.append([new_first] + p)
+def enumerateKmers(bases, k):
+    imer_list = bases.copy()
+    for _ in range(1, k):
+        imer_list = addToKmers(imer_list, bases)
     
-#     return kmer_list
-
-def addToKmers(imer_list):
-    base = ['A','C','G','T']
-
-    for imer in imer_list
+    return imer_list
+    
 
 # def kmers(bases, k):
 #     imer_list = ['A','C','G','T']
@@ -94,6 +95,7 @@ if __name__ == '__main__':
     # kmers = lexico_kmers(filename)
     # k_kmers(filename)
     input_f = sys.argv[1]
-    bases, length = ReadInput(input_f)
-    print(enumerateKmers(length))
+    bases, k = ReadInput(input_f)
+    kmers = enumerateKmers(bases, k)
+    print(*kmers, sep='\n')
 
