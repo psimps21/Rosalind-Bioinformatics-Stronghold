@@ -1,11 +1,16 @@
-import numpy as np
+"""
+Given: A positive integer n≤10000 followed by a permutation π of length n.
+
+Return: A longest increasing subsequence of π, followed by a longest decreasing subsequence of π.
+"""
 import sys
 
 def ReadFromFile(input_f):
     with open(input_f, 'r') as f:
         data = f.readlines()
 
-    seq = np.array([int(x) for x in data[-1].strip().split()])
+    # seq = np.array([int(x) for x in data[-1].strip().split()])
+    seq = [int(x) for x in data[-1].strip().split()]
 
     return seq
 
