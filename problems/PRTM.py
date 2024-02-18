@@ -1,5 +1,4 @@
 import sys
-# from decimal import *
 
 def ReadInput(input_f):
     with open(input_f, 'r') as f:
