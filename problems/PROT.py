@@ -95,7 +95,7 @@ def rna_to_protein1(rna):
 
     aa_seq = ''
     for i in range(0, len(rna), 3):
-        codon = s[i:i+3]
+        codon = rna[i:i+3]
         if codon_table[codon] == '*':
             break
         aa_seq += codon_table[codon]
