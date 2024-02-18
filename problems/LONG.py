@@ -6,8 +6,6 @@ The dataset is guaranteed to satisfy the following condition: there exists a uni
 entire chromosome from these reads by gluing together pairs of reads that overlap by more than half their length.
 
 Return: A shortest superstring containing all the given strings (thus corresponding to a reconstructed chromosome).
-
-
 """
 import numpy as np
 import sys
