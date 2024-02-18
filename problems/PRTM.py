@@ -1,3 +1,8 @@
+"""
+Given: A protein string P of length at most 1000 aa.
+
+Return: The total weight of P. Consult the monoisotopic mass table.
+"""
 import sys
 
 def ReadInput(input_f):
