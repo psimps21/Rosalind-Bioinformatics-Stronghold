@@ -48,18 +48,8 @@ def enumerateKmers(bases, k):
 
 ############## Recurssive Solution ####################
 
-# def lexico_kmers(filename):
-#     with open(filename, 'r') as f:
-#         data = []
-#         for line in f:
-#             line = line.replace('\n', '')
-#             data.append(line)
-
-#     alphabet = list(data[0].split(' '))
-#     k = int(data[1])
-
+# def lexico_kmers(alphabet, k):
 #     kmers = make_kmers(alphabet, [], [0]*k, 0, k)
-
 #     return kmers
 
 
@@ -83,11 +73,9 @@ def enumerateKmers(bases, k):
 
 
 if __name__ == '__main__':
-    # filename = input('Entera file path: ')
-    # kmers = lexico_kmers(filename)
-    # k_kmers(filename)
     input_f = sys.argv[1]
     bases, k = ReadInput(input_f)
+    # kmers = lexico_kmers(bases, k)
     kmers = enumerateKmers(bases, k)
     print(*kmers, sep='\n')
 
