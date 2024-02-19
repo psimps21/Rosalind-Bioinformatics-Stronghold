@@ -3,7 +3,20 @@ Given: A DNA string s in FASTA format (having length at most 100 kbp).
 
 Return: The 4-mer composition of s.
 """
-from fasta_parser import FASTA
+import sys
+
+def ReadInput(input_f):
+    with open(input_f, 'r') as fasta:
+        sequence_list = []
+
+        for line in fasta.readlines():
+            if line.startswith('>'):
+                sequence_list.append('')
+
+            else:
+                sequence_list[-1] += line.strip('\n')
+    
+    return sequence_list[-1]
 
 def number_to_pattern(inx, k):
     symbols = {
@@ -37,9 +50,7 @@ def pattern_to_number(pattrn):
 
     return 4 * pattern_to_number(prefix) + bases[end]
 
-def kmer_comp(filename):
-    seq, _ = FASTA(filename)
-    seq = [str(s) for s in seq.values()]
+def kmer_comp(seq):
     array = [0] * 4**4
     k = 4
 
@@ -49,8 +60,10 @@ def kmer_comp(filename):
     return array
 
 if __name__ == '__main__':
-    filename = input('Enter a file path: ')
-    arr = kmer_comp(filename)
+    input_f = sys.argv[1]
+    dna = ReadInput(input_f)
+
+    arr = kmer_comp(dna)
     print(*arr)
     # print(number_to_pattern(2, 4))
     # print(pattern_to_number('AAAG'))
